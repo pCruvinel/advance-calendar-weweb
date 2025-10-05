@@ -1,0 +1,14 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "weweb build",
+    "serve": "weweb serve"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
+  },
+  "devDependencies": {
+    "@weweb/cli": "latest"
+  }
+}
