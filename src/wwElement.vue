@@ -984,17 +984,15 @@ export default {
         emit('trigger-event', {
           name: 'event-update',
           event: {
-            event: eventData,
-            previousEvent: editingEvent.value
+            ...eventData,
+            previousEventId: editingEvent.value.id
           }
         });
       } else {
         // Create new event
         emit('trigger-event', {
           name: 'event-create',
-          event: {
-            event: eventData
-          }
+          event: eventData
         });
       }
 

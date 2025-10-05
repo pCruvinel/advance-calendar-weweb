@@ -21,15 +21,31 @@ export default {
       name: 'event-create',
       label: { en: 'Event Created', pt: 'Agendamento Criado' },
       event: {
-        event: {}
+        id: '',
+        title: '',
+        description: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        shiftId: '',
+        color: '',
+        customFields: ''
       }
     },
     {
       name: 'event-update',
       label: { en: 'Event Updated', pt: 'Agendamento Atualizado' },
       event: {
-        event: {},
-        previousEvent: {}
+        id: '',
+        title: '',
+        description: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        shiftId: '',
+        color: '',
+        customFields: '',
+        previousEventId: ''
       }
     },
     {
