@@ -101,9 +101,9 @@ export default {
       section: 'settings',
       options: {
         options: [
-          { value: 'month', label: 'Month / Mês' },
-          { value: 'week', label: 'Week / Semana' },
-          { value: 'day', label: 'Day / Dia' }
+          { value: 'month', label: 'Mês' },
+          { value: 'week', label: 'Semana' },
+          { value: 'day', label: 'Dia' }
         ]
       },
       defaultValue: 'month',
@@ -111,9 +111,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Valid values: month | week | day'
+        tooltip: 'Valores válidos: month | week | day'
       },
-      propertyHelp: 'Calendar view mode: month shows full month grid, week shows 7 days with time slots, day shows single day detail'
+      propertyHelp: 'Modo de visualização do calendário: mês mostra grade completa, semana mostra 7 dias com slots de horário, dia mostra detalhes de um único dia'
       /* wwEditor:end */
     },
 
@@ -126,9 +126,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Date in ISO format (YYYY-MM-DD) or leave empty for today'
+        tooltip: 'Data no formato ISO (AAAA-MM-DD) ou deixe vazio para hoje'
       },
-      propertyHelp: 'Starting date for the calendar (format: YYYY-MM-DD). Leave empty to start at today.'
+      propertyHelp: 'Data inicial para o calendário (formato: AAAA-MM-DD). Deixe vazio para iniciar em hoje.'
       /* wwEditor:end */
     },
 
@@ -139,10 +139,10 @@ export default {
       options: {
         options: [
           { value: 'pt-BR', label: 'Português (Brasil)' },
-          { value: 'en-US', label: 'English (US)' },
-          { value: 'es-ES', label: 'Español' },
-          { value: 'fr-FR', label: 'Français' },
-          { value: 'de-DE', label: 'Deutsch' }
+          { value: 'en-US', label: 'Inglês (EUA)' },
+          { value: 'es-ES', label: 'Espanhol' },
+          { value: 'fr-FR', label: 'Francês' },
+          { value: 'de-DE', label: 'Alemão' }
         ]
       },
       defaultValue: 'pt-BR',
@@ -150,7 +150,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Valid locale code (pt-BR, en-US, es-ES, fr-FR, de-DE)'
+        tooltip: 'Código de idioma válido (pt-BR, en-US, es-ES, fr-FR, de-DE)'
       }
       /* wwEditor:end */
     },
@@ -161,8 +161,8 @@ export default {
       section: 'settings',
       options: {
         options: [
-          { value: 0, label: 'Sunday / Domingo' },
-          { value: 1, label: 'Monday / Segunda' }
+          { value: 0, label: 'Domingo' },
+          { value: 1, label: 'Segunda-feira' }
         ]
       },
       defaultValue: 0,
@@ -170,7 +170,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'number',
-        tooltip: 'Valid values: 0 (Sunday) | 1 (Monday)'
+        tooltip: 'Valores válidos: 0 (Domingo) | 1 (Segunda-feira)'
       }
       /* wwEditor:end */
     },
@@ -187,9 +187,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'number',
-        tooltip: 'Duration in minutes for each time slot (5-120)'
+        tooltip: 'Duração em minutos de cada slot de horário (5-120)'
       },
-      propertyHelp: 'Duration in minutes for each available time slot. Used to calculate available booking slots.'
+      propertyHelp: 'Duração em minutos de cada slot de horário disponível. Usado para calcular os horários disponíveis para agendamento.'
       /* wwEditor:end */
     },
 
@@ -205,7 +205,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'number',
-        tooltip: 'Primeira hora a ser exibida nas visualizações Week e Day (0-23)'
+        tooltip: 'Primeira hora a ser exibida nas visualizações Semana e Dia (0-23)'
       },
       propertyHelp: 'Define a partir de qual hora o calendário será exibido (ex: 8 para 8h da manhã)'
       /* wwEditor:end */
@@ -223,7 +223,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'number',
-        tooltip: 'Última hora a ser exibida nas visualizações Week e Day (0-23)'
+        tooltip: 'Última hora a ser exibida nas visualizações Semana e Dia (0-23)'
       },
       propertyHelp: 'Define até qual hora o calendário será exibido (ex: 18 para 18h)'
       /* wwEditor:end */
@@ -367,7 +367,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract shift ID from bound data'
+        tooltip: 'Fórmula para extrair o ID do turno dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -388,7 +388,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract shift name from bound data'
+        tooltip: 'Fórmula para extrair o nome do turno dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -409,7 +409,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract start time from bound data'
+        tooltip: 'Fórmula para extrair o horário de início dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -430,7 +430,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract end time from bound data'
+        tooltip: 'Fórmula para extrair o horário de término dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -451,7 +451,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract color from bound data'
+        tooltip: 'Fórmula para extrair a cor dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -550,9 +550,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'array',
-        tooltip: 'Array of event/booking objects with id, title, date, times, and custom fields'
+        tooltip: 'Array de objetos de evento/agendamento com id, título, data, horários e campos personalizados'
       },
-      propertyHelp: 'Events or bookings to display on the calendar. Can be bound to external data sources like databases or APIs.'
+      propertyHelp: 'Eventos ou agendamentos para exibir no calendário. Pode ser vinculado a fontes de dados externas como bancos de dados ou APIs.'
       /* wwEditor:end */
     },
 
@@ -573,7 +573,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract event ID from bound data'
+        tooltip: 'Fórmula para extrair o ID do evento dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -594,7 +594,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract event title from bound data'
+        tooltip: 'Fórmula para extrair o título do evento dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -615,7 +615,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract event date from bound data'
+        tooltip: 'Fórmula para extrair a data do evento dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -636,7 +636,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract start time from bound data'
+        tooltip: 'Fórmula para extrair o horário de início dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -657,7 +657,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Formula to extract end time from bound data'
+        tooltip: 'Fórmula para extrair o horário de término dos dados vinculados'
       }
       /* wwEditor:end */
     },
@@ -679,9 +679,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'array',
-        tooltip: 'Array of date strings in YYYY-MM-DD format that should be disabled'
+        tooltip: 'Array de datas no formato AAAA-MM-DD que devem ser desabilitadas'
       },
-      propertyHelp: 'List of specific dates to disable (e.g., holidays). Format: YYYY-MM-DD. Example: 2025-12-25'
+      propertyHelp: 'Lista de datas específicas para desabilitar (ex: feriados). Formato: AAAA-MM-DD. Exemplo: 2025-12-25'
       /* wwEditor:end */
     },
 
@@ -733,11 +733,11 @@ export default {
                 type: 'TextSelect',
                 options: {
                   options: [
-                    { value: 'text', label: 'Text / Texto' },
-                    { value: 'textarea', label: 'Long Text / Texto Longo' },
-                    { value: 'number', label: 'Number / Número' },
+                    { value: 'text', label: 'Texto' },
+                    { value: 'textarea', label: 'Texto Longo' },
+                    { value: 'number', label: 'Número' },
                     { value: 'email', label: 'Email' },
-                    { value: 'phone', label: 'Phone / Telefone' }
+                    { value: 'phone', label: 'Telefone' }
                   ]
                 },
                 bindable: true,
@@ -762,9 +762,9 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'array',
-        tooltip: 'Array of custom field definitions for event forms'
+        tooltip: 'Array de definições de campos personalizados para formulários de eventos'
       },
-      propertyHelp: 'Define additional fields for event creation/editing (e.g., client name, phone, notes)'
+      propertyHelp: 'Define campos adicionais para criação/edição de eventos (ex: nome do cliente, telefone, observações)'
       /* wwEditor:end */
     },
 
@@ -775,9 +775,9 @@ export default {
       section: 'settings',
       options: {
         options: [
-          { value: 'yyyy-MM-dd', label: 'YYYY-MM-DD (ISO)' },
-          { value: 'dd/MM/yyyy', label: 'DD/MM/YYYY (BR)' },
-          { value: 'MM/dd/yyyy', label: 'MM/DD/YYYY (US)' }
+          { value: 'yyyy-MM-dd', label: 'AAAA-MM-DD (ISO)' },
+          { value: 'dd/MM/yyyy', label: 'DD/MM/AAAA (BR)' },
+          { value: 'MM/dd/yyyy', label: 'MM/DD/AAAA (EUA)' }
         ]
       },
       defaultValue: 'dd/MM/yyyy',
@@ -801,7 +801,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Background color in hex format'
+        tooltip: 'Cor de fundo em formato hexadecimal'
       }
       /* wwEditor:end */
     },
@@ -815,7 +815,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Border color in hex format'
+        tooltip: 'Cor da borda em formato hexadecimal'
       }
       /* wwEditor:end */
     },
@@ -829,7 +829,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Primary text color in hex format'
+        tooltip: 'Cor do texto principal em formato hexadecimal'
       }
       /* wwEditor:end */
     },
@@ -857,7 +857,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Background color on hover'
+        tooltip: 'Cor de fundo ao passar o mouse'
       }
       /* wwEditor:end */
     },
@@ -871,7 +871,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Primary accent color for buttons and highlights'
+        tooltip: 'Cor de destaque primária para botões e realces'
       }
       /* wwEditor:end */
     },
@@ -885,7 +885,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Background color for disabled dates'
+        tooltip: 'Cor de fundo para datas desabilitadas'
       }
       /* wwEditor:end */
     },
@@ -899,7 +899,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'string',
-        tooltip: 'Border radius for calendar and elements'
+        tooltip: 'Raio da borda para calendário e elementos'
       }
       /* wwEditor:end */
     },
@@ -914,7 +914,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'boolean',
-        tooltip: 'Enable/disable clicking on events'
+        tooltip: 'Habilitar/desabilitar clique em eventos'
       }
       /* wwEditor:end */
     },
@@ -928,7 +928,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'boolean',
-        tooltip: 'Enable/disable clicking on time slots'
+        tooltip: 'Habilitar/desabilitar clique em slots de horário'
       }
       /* wwEditor:end */
     },
@@ -942,7 +942,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'boolean',
-        tooltip: 'Show week numbers in month view'
+        tooltip: 'Mostrar números das semanas na visualização mensal'
       }
       /* wwEditor:end */
     },
@@ -956,7 +956,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'boolean',
-        tooltip: 'Show/hide Saturday and Sunday in week/day views'
+        tooltip: 'Mostrar/ocultar sábado e domingo nas visualizações de semana/dia'
       }
       /* wwEditor:end */
     },
@@ -970,7 +970,7 @@ export default {
       /* wwEditor:start */
       bindingValidation: {
         type: 'boolean',
-        tooltip: 'Use 24-hour time format (true) or 12-hour AM/PM (false)'
+        tooltip: 'Usar formato de 24 horas (verdadeiro) ou 12 horas AM/PM (falso)'
       }
       /* wwEditor:end */
     },

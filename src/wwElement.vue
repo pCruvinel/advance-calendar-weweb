@@ -231,31 +231,6 @@
             </div>
           </div>
 
-          <!-- Shift Selection -->
-          <div class="form-group" v-if="processedShifts.length > 0">
-            <label class="form-label">Turno</label>
-            <select v-model="modalEventData.shiftId" class="form-select">
-              <option value="">Nenhum</option>
-              <option
-                v-for="shift in processedShifts"
-                :key="shift.id"
-                :value="shift.id"
-              >
-                {{ shift.name }} ({{ shift.startTime }} - {{ shift.endTime }})
-              </option>
-            </select>
-          </div>
-
-          <!-- Color -->
-          <div class="form-group">
-            <label class="form-label">Cor</label>
-            <input
-              v-model="modalEventData.color"
-              type="color"
-              class="form-input-color"
-            />
-          </div>
-
           <!-- Custom Fields -->
           <div
             v-for="field in customEventFields"
@@ -406,8 +381,6 @@ export default {
       date: '',
       startTime: '',
       endTime: '',
-      shiftId: '',
-      color: '#1967d2',
       customFields: {}
     });
 
@@ -833,7 +806,7 @@ export default {
     // ==================== MODAL FUNCTIONS ====================
 
     function openEventModal({ date, time, shift } = {}) {
-      // Reset modal data
+      // Reset modal data (shiftId e color serão detectados automaticamente ao salvar)
       modalEventData.value = {
         id: `event-${Date.now()}`,
         title: '',
@@ -841,8 +814,6 @@ export default {
         date: date || format(currentDate.value, 'yyyy-MM-dd'),
         startTime: time || '09:00',
         endTime: time ? addMinutesToTime(time, 60) : '10:00',
-        shiftId: shift?.id || '',
-        color: shift?.color || props.content?.primaryColor || '#1967d2',
         customFields: {}
       };
 
@@ -868,6 +839,7 @@ export default {
         customFields = event.customFields || {};
       }
 
+      // shiftId e color não precisam ser exibidos no modal, serão detectados ao salvar
       modalEventData.value = {
         id: event.id,
         title: event.title,
@@ -875,8 +847,6 @@ export default {
         date: event.date,
         startTime: event.startTime,
         endTime: event.endTime,
-        shiftId: event.shiftId || '',
-        color: event.color || '#1967d2',
         customFields: { ...customFields }
       };
 
@@ -900,6 +870,28 @@ export default {
     function getShiftName(shiftId) {
       const shift = processedShifts.value.find(s => s.id === shiftId);
       return shift ? shift.name : '';
+    }
+
+    // Detecta automaticamente o turno baseado na data e horários
+    function detectShift(date, startTime, endTime) {
+      if (!date || !startTime || !endTime) return null;
+
+      const dateObj = parseISO(date);
+      const dayOfWeek = getDay(dateObj);
+      const dateStr = format(dateObj, 'yyyy-MM-dd');
+
+      // Encontra o turno que corresponde ao horário
+      const matchingShift = processedShifts.value.find(shift => {
+        if (!shift.enabled) return false;
+        if (!shift.daysOfWeek?.includes(dayOfWeek)) return false;
+        if (shift.startDate && shift.startDate !== '' && dateStr < shift.startDate) return false;
+        if (shift.endDate && shift.endDate !== '' && dateStr > shift.endDate) return false;
+
+        // Check if time is within shift
+        return startTime >= shift.startTime && endTime <= shift.endTime;
+      });
+
+      return matchingShift || null;
     }
 
     function validateEventData() {
@@ -974,8 +966,23 @@ export default {
     function saveEvent() {
       if (!validateEventData()) return;
 
+      // Detectar turno automaticamente baseado nos horários
+      const detectedShift = detectShift(
+        modalEventData.value.date,
+        modalEventData.value.startTime,
+        modalEventData.value.endTime
+      );
+
+      // Preparar dados do evento
       const eventData = {
-        ...modalEventData.value,
+        id: modalEventData.value.id,
+        title: modalEventData.value.title,
+        description: modalEventData.value.description,
+        date: modalEventData.value.date,
+        startTime: modalEventData.value.startTime,
+        endTime: modalEventData.value.endTime,
+        shiftId: detectedShift?.id || '',
+        color: detectedShift?.color || props.content?.primaryColor || '#1967d2',
         customFields: JSON.stringify(modalEventData.value.customFields)
       };
 
@@ -1164,7 +1171,7 @@ export default {
             currentDate.value = parsed;
           }
         } catch (e) {
-          console.warn('Invalid initial date:', newDate);
+          console.warn('Data inicial inválida:', newDate);
         }
       }
     }, { immediate: true });
@@ -1186,6 +1193,17 @@ export default {
       props.content?.timeFormat24h,
       props.content?.allowEventClick,
       props.content?.allowSlotClick,
+      props.content?.showShiftIndicators,
+      props.content?.dateInputFormat,
+      // Style properties (reactive via calendarStyles computed)
+      props.content?.backgroundColor,
+      props.content?.borderColor,
+      props.content?.textColor,
+      props.content?.todayColor,
+      props.content?.hoverColor,
+      props.content?.primaryColor,
+      props.content?.disabledColor,
+      props.content?.borderRadius,
       // Formula properties
       props.content?.shiftsIdFormula,
       props.content?.shiftsNameFormula,
